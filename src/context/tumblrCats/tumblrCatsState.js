@@ -20,7 +20,7 @@ const TumblrCatsState = (props) => {
             'https://api.thecatapi.com/v1/images/search'
         );
 
-        console.log(res);
+        console.log(res.data.length);
 
         dispatch({
             type: SEARCH_CATS,

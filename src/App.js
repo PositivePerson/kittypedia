@@ -1,29 +1,31 @@
-import { Fragment } from 'react'
+import { useContext } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
-
-import Button from '@material-ui/core/Button';
 
 import PrivacyPolicy from './components/pages/policy';
 import TermsOfUse from './components/pages/terms';
 
 import TumblrCatsState from './context/tumblrCats/tumblrCatsState';
 
+import CatPhoto from './components/photos/CatPhoto';
+import ChooseSectionButtons from './components/layout/ChooseSectionButtons';
+
 function App() {
+
   return (
     <TumblrCatsState>
       <BrowserRouter>
         <div className="App">
+          <header className="App-header">
+            <ChooseSectionButtons />
+          </header>
+          <CatPhoto />
           <Switch>
             <Route
               exact
               path='/'
               render={(props) => (
-                <Fragment>
-                  <header className="App-header">
-                    <Button variant="contained" color="primary">Go to cats photos</Button>
-                  </header>
-                </Fragment>
+                <div></div>
               )}
             />
             <Route
