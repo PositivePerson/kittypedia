@@ -17,14 +17,20 @@ const TumblrCatsState = (props) => {
         setLoading();
 
         const res = await axios.get(
-            'https://api.thecatapi.com/v1/images/search'
+            // 'https://api.thecatapi.com/v1/images/search'
+            `https://api.thecatapi.com/v1/images/search?format=json&limit=10`, {
+            headers: {
+                'x-api-key': 'DEMO-API-KEY'
+                // 'x-api-key': '24cf0cfc-3287-49f4-9207-58811a047369'
+            }
+        }
         );
 
-        console.log(res.data.length);
+        console.log("🚀 ~ file: tumblrCatsState.js ~ line 31 ~ searchCats ~ res", res)
 
         dispatch({
             type: SEARCH_CATS,
-            payload: res
+            payload: res.data
         })
     }
 

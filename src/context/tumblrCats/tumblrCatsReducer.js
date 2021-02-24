@@ -6,7 +6,7 @@ export default (state, { type, payload }) => {
         case SEARCH_CATS:
             return {
                 ...state,
-                cats: payload.data,
+                cats: payload,
                 loading: false
             }
 
