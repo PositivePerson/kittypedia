@@ -13,15 +13,20 @@ const TumblrCatsState = (props) => {
 
     const [state, dispatch] = useReducer(TumblrCatsReducer, initialState);
 
-    const searchCats = async (text) => {
+    const searchCats = async (contentType, text) => {
         setLoading();
 
         const res = await axios.get(
             // 'https://api.thecatapi.com/v1/images/search'
-            `https://api.thecatapi.com/v1/images/search?format=json&limit=10`, {
+            `https://api.thecatapi.com/v1/images/search?format=json`, {
             headers: {
-                'x-api-key': 'DEMO-API-KEY'
-                // 'x-api-key': '24cf0cfc-3287-49f4-9207-58811a047369'
+                // 'x-api-key': 'DEMO-API-KEY'
+                'x-api-key': '24cf0cfc-3287-49f4-9207-58811a047369'
+            },
+            params: {
+                // mime_types: "gif",
+                mime_types: contentType === "photo" ? "jpg,png" : "gif",
+                limit: 5
             }
         }
         );

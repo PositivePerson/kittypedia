@@ -16,3 +16,7 @@
 .full-screen-height {
   min-height: 100vh;
 }
+
+.startBtnSize {
+  width: 10em !important;
+}

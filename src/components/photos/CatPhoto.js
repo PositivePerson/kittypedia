@@ -1,6 +1,7 @@
 import React, { Fragment, useContext } from 'react'
 
 import TumblrCatsContext from '../../context/tumblrCats/tumblrCatsContext';
+import cardItem from './cardItem';
 
 const CatPhoto = () => {
     const tumblrCatsContext = useContext(TumblrCatsContext);
@@ -13,10 +14,7 @@ const CatPhoto = () => {
         return (
             <Fragment>
                 { cats.map(cat => (
-                    <div>
-                        <img src={cat.url} alt="" />
-                        {/* <h3>{cat.id}</h3> */}
-                    </div>
+                    <cardItem key={cat.id} cat={cat} />
                 ))}
             </Fragment>
         )

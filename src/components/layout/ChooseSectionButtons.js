@@ -10,7 +10,12 @@ const ChooseSectionButtons = () => {
     const { cats, searchCats } = tumblrCatsContext;
 
     const firePhotoSection = () => {
-        searchCats();
+        searchCats("photo");
+        console.log(cats.length);
+    }
+
+    const fireGifSection = () => {
+        searchCats("gif");
         console.log(cats.length);
     }
 
@@ -24,7 +29,10 @@ const ChooseSectionButtons = () => {
     } else {
         return (
             <header className="App-header full-screen-height">
-                <Button variant="contained" color="primary" onClick={firePhotoSection}>Go to cats photos</Button>
+                <div>
+                    <Button variant="contained" color="primary" className="mx-5 startBtnSize" onClick={firePhotoSection}>kitten photos</Button>
+                    <Button variant="contained" color="primary" className="mx-5 startBtnSize" onClick={fireGifSection}>kitten gifs</Button>
+                </div>
             </header>
         )
     }
