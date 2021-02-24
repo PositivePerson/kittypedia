@@ -4,11 +4,10 @@ import './App.css';
 
 import PrivacyPolicy from './components/pages/policy';
 import TermsOfUse from './components/pages/terms';
-
-import TumblrCatsState from './context/tumblrCats/tumblrCatsState';
-
 import CatPhoto from './components/photos/CatPhoto';
 import ChooseSectionButtons from './components/layout/ChooseSectionButtons';
+
+import TumblrCatsState from './context/tumblrCats/tumblrCatsState';
 
 function App() {
 
@@ -16,9 +15,7 @@ function App() {
     <TumblrCatsState>
       <BrowserRouter>
         <div className="App">
-          <header className="App-header">
-            <ChooseSectionButtons />
-          </header>
+          <ChooseSectionButtons />
           <CatPhoto />
           <Switch>
             <Route

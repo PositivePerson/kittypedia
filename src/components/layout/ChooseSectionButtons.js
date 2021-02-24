@@ -18,16 +18,14 @@ const ChooseSectionButtons = () => {
 
     if (cats.length) {
         return (
-            <Fragment>
-                <div>There is some content fetched already!</div>
-                <div>Cats: {cats.length}</div>
-            </Fragment>
+            <>
+            </>
         )
     } else {
         return (
-            <div>
+            <header className="App-header full-screen-height">
                 <Button variant="contained" color="primary" onClick={firePhotoSection}>Go to cats photos</Button>
-            </div>
+            </header>
         )
     }
 
