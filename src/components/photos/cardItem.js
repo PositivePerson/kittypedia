@@ -1,12 +1,12 @@
 import React from 'react'
 
-const cardItem = (cat) => {
+const CardItem = ({ cat }) => {
     return (
         <div className="card" key={cat.id}>
-            <img src={cat.url} alt="" />
+            <img className="card-img" src={cat.url} alt="" />
             {/* <h3>{cat.id}</h3> */}
         </div>
     )
 }
 
-export default cardItem
+export default CardItem
