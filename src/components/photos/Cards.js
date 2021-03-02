@@ -19,9 +19,9 @@ const Cards = ({ cardsDisplayFormat }) => {
     } else {
         return (
             <Fragment>
-                <div className={`container-flex flex-column justify-content-center ${cardsDisplayFormat ? "" : "card-columns"}`}>
+                <div className={`container-flex flex-column justify-content-center px-4 ${cardsDisplayFormat ? "" : "card-columns mt-4"}`}>
                     {cats.map(cat => (
-                        <div className={cardsDisplayFormat ? "w-50 mx-auto" : "mx-2"}>
+                        <div className={cardsDisplayFormat ? "w-50 mx-auto mt-5" : ""}>
                             <CardItem key={cat.id} cat={cat} />
                         </div>
                     ))}

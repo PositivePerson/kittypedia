@@ -1,5 +1,28 @@
+body {
+  min-height: 100%;
+}
+
 .App {
   text-align: center;
+
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://cdn2.thecatapi.com/images/a8o.jpg');
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* -webkit-backdrop-filter: blur(10px);
+    -moz-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px); */
+    
+}
+
+.App-container {
+  background: rgba(255, 255, 255, 0.35);
+  min-height: 100vh;
+  
+  -webkit-backdrop-filter: blur(7px);
+  -moz-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
+  
 }
 
 .App-header {
@@ -13,10 +36,35 @@
   color: white;
 }
 
+h1, h2, h3, h4, h5 {
+  font-family: 'Dancing Script', cursive;
+}
+
+h1 {
+  font-size: 7em !important;
+}
+
+h4 {
+  font-size: 2em !important;
+  margin-bottom: 4em;
+}
+
 .full-screen-height {
   min-height: 100vh;
 }
 
 .startBtnSize {
   width: 10em !important;
+}
+
+.card {
+  background-color: unset !important;
+  border: none !important;
+}
+
+.btnFloating {
+  position: absolute;
+  bottom: 1em;
+  left: 50%;
+  transform: translate( -50%, 0);
 }
