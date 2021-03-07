@@ -45,7 +45,7 @@ h1 {
 }
 
 h4 {
-  font-size: 2em !important;
+  font-size: 1.9em !important;
   margin-bottom: 4em;
 }
 
@@ -62,9 +62,22 @@ h4 {
   border: none !important;
 }
 
+.card-img:hover, .btnFloating:hover + .card-img {
+  -webkit-filter: grayscale(100%) blur(1.5px); 
+  filter: grayscale(100%) blur(1.5px);
+
+}
+
+.card-inner-container { 
+  display: flex;
+  flex-direction: column-reverse;
+}
+
 .btnFloating {
-  position: absolute;
-  bottom: 1em;
+  position: absolute !important;
+  top: 50%;
   left: 50%;
-  transform: translate( -50%, 0);
+  transform: translate( -50%, -50%);
+
+  z-index: 99;
 }
