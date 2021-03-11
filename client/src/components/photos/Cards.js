@@ -22,7 +22,7 @@ const Cards = ({ cardsDisplayFormat }) => {
                 <div className={`container-flex flex-column justify-content-center px-4 ${cardsDisplayFormat ? "" : "card-columns mt-5"}`}>
                     {cats.map(cat => (
                         <div className={cardsDisplayFormat ? "w-50 mx-auto mt-5" : ""}>
-                            <CardItem key={cat.id} cat={cat} />
+                            <CardItem key={cat.id} cat={cat} cardsDisplayFormat={cardsDisplayFormat} />
                         </div>
                     ))}
                 </div>

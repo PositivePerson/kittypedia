@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 
 import Button from '@material-ui/core/Button';
 
-const CardItem = ({ cat }) => {
+const CardItem = ({ cat, cardsDisplayFormat }) => {
     const [fetching, setFetching] = useState(false);
     const [error, setError] = useState(false);
 
@@ -73,7 +73,7 @@ const CardItem = ({ cat }) => {
 
                 <button variant="outlined" color="secondary"
                     type="button"
-                    className="btnFloating btn btn-outline-secondary"
+                    className={`btnFloating btn btn-outline-secondary ${cardsDisplayFormat ? 'btnFloatingOnCards' : 'btnFloatingOnVertical'}`}
                     disabled={fetching}
                     onClick={() => downloadFile(cat.url)}
                     aria-label="download this">
@@ -90,7 +90,7 @@ const CardItem = ({ cat }) => {
                         Download File
                 </Button> */}
             </div>
-        </div>
+        </div >
     )
 
 }
