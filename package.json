@@ -2,9 +2,14 @@
   "name": "kittypedia-create-react-app-express",
   "version": "1.0.0",
   "scripts": {
+    "start": "node server/index.js",
+    "build": "cd client && npm install && npm run build",
     "client": "cd client && npm start",
     "server": "nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+  },
+  "engines": {
+    "node": "v12.16.2"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
