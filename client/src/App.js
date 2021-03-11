@@ -97,7 +97,7 @@ function App() {
               <>
                 <Button style={btnFloat} onClick={() => setCardsDisplayFormat(!cardsDisplayFormat)} color="secondary">{cardsDisplayFormat ? <i class="fas fa-th"></i> : <i class="fas fa-align-justify"></i>}</Button>
                 <h1>Caturday</h1>
-                <h4 className="desc">Provide kitty stuff every day <Emoji>😸</Emoji></h4>
+                <h4 className="desc">Provide kitty stuff for every occasion <Emoji>😸</Emoji></h4>
                 <Cards cardsDisplayFormat={cardsDisplayFormat} />
               </>
             }
