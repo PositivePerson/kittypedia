@@ -47,13 +47,14 @@
       "background.js"
     ]
   },
-
-  "content_scripts": [{
-    "js": [
-      "browser-polyfill.js",
-      "content.js"
-    ]
-  }],
+  "content_scripts": [
+    {
+      "js": [
+        "browser-polyfill.js",
+        "content.js"
+      ]
+    }
+  ],
   "devDependencies": {
     "webextension-polyfill": "^0.7.0"
   },
