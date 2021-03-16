@@ -53,9 +53,9 @@ const CardItem = ({ cat, cardsDisplayFormat }) => {
     }
 
 
-    useEffect(() => {
-        console.log("Error occured!");
-    }, [error])
+    // useEffect(() => {
+    //     console.log("Error occured!");
+    // }, [error])
 
     return (
         <div className="card" key={cat.id}>

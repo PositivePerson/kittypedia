@@ -17,38 +17,38 @@ function App() {
   const [cardsDisplayFormat, setCardsDisplayFormat] = useState(true);
   const [APIFetched, setAPIFetched] = useState(false);
 
-  // const [response, setResponse] = useState('');
-  // const [post, setPost] = useState('');
-  // const [responseToPost, setResponseToPost] = useState('');
+  const [response, setResponse] = useState('');
+  const [post, setPost] = useState('');
+  const [responseToPost, setResponseToPost] = useState('');
 
-  // const callApi = async () => {
-  //   const response = await fetch('/api/hello');
-  //   const body = await response.json();
-  //   if (response.status !== 200) throw Error(body.message);
+  const callApi = async () => {
+    const response = await fetch('/api/hello');
+    const body = await response.json();
+    if (response.status !== 200) throw Error(body.message);
 
-  //   return body;
-  // };
+    return body;
+  };
 
-  // const handleSubmit = async e => {
-  //   e.preventDefault();
-  //   const response = await fetch('/api/world', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({ post: post }),
-  //   });
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const response = await fetch('/api/world', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ post: post }),
+    });
 
 
-  //   const body = await response.text();
-  //   setResponseToPost(body);
-  // }
+    const body = await response.text();
+    setResponseToPost(body);
+  }
 
-  // useEffect(() => {
-  //   callApi()
-  //     .then(res => setResponse(res.express))
-  //     .catch(err => console.log(err));
-  // }, [])
+  useEffect(() => {
+    callApi()
+      .then(res => setResponse(res.express))
+      .catch(err => console.log(err));
+  }, [])
 
   const btnFloatBox = {
     position: "absolute",
@@ -79,7 +79,7 @@ function App() {
         <div className="App">
           <div className="App-container">
 
-            {/* <p>{response}</p>
+            <p>{response}</p>
             <form onSubmit={handleSubmit}>
               <p>
                 <strong>Post to Server:</strong>
@@ -91,7 +91,7 @@ function App() {
               />
               <button type="submit">Submit</button>
             </form>
-            <p>{responseToPost}</p> */}
+            <p>{responseToPost}</p>
 
             {APIFetched &&
               <>
