@@ -36,16 +36,17 @@ const CardItem = ({ cat, cardsDisplayFormat }) => {
         const anchorClicked = await inputRef.current.click();
 
         setTimeout(() => {
-            removeAllSavedFiles();
+            removeAllSavedFiles(url);
         }, 5000)
     }
 
-    const removeAllSavedFiles = async () => {
+    const removeAllSavedFiles = async (url) => {
         const response = await fetch('/api/cleanDirectory', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-            }
+            },
+            body: JSON.stringify({ url: url }),
         })
 
         const body = await response.text();
@@ -68,7 +69,7 @@ const CardItem = ({ cat, cardsDisplayFormat }) => {
                     <i className="fas fa-download" />
                 </Button> */}
 
-                <a href={`/images/${cat.url.substr(34)}`} ref={inputRef} target="_blank" download>
+                <a href={`/${cat.url.substr(34)}`} ref={inputRef} target="_blank" download>
                 </a>
 
                 <button variant="outlined" color="secondary"
