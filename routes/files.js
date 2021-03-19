@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
+
+
+
 // =============================================================
 
 const fs = require('fs');
@@ -26,8 +29,7 @@ router.put('/download', async (req, res) => {
 })
 
 router.get('/showFilesFolderContent', (req, res) => {
-    // const folder = './client/public';
-    const folder = './';
+    const folder = './client/public';
 
     fs.readdir(folder, (err, files) => {
         if (err) {
@@ -35,7 +37,8 @@ router.get('/showFilesFolderContent', (req, res) => {
             throw err;
         }
 
-        res.send(files);
+        // res.send(files);
+        res.send(process.env.NODE_ENV);
         console.log(files);
     });
 })
