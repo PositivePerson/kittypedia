@@ -29,7 +29,10 @@ router.get('/showFilesFolderContent', (req, res) => {
     const folder = './client/public';
 
     fs.readdir(folder, (err, files) => {
-        if (err) throw err;
+        if (err) {
+            res.send(`Something wrong with reading files to show`)
+            throw err;
+        }
 
         res.send(files);
         console.log(files);
@@ -44,6 +47,7 @@ router.delete('/cleanDirectory', (req, res) => {
         //file removed
     } catch (err) {
         console.error(err)
+        res.send(`Didnt find this file in 'public' directory`);
     }
 
     // fs.readdir(directory, (err, files) => {
