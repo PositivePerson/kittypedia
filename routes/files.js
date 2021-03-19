@@ -26,7 +26,8 @@ router.put('/download', async (req, res) => {
 })
 
 router.get('/showFilesFolderContent', (req, res) => {
-    const folder = './client/public';
+    // const folder = './client/public';
+    const folder = './';
 
     fs.readdir(folder, (err, files) => {
         if (err) {
