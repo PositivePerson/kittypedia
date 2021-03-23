@@ -2,8 +2,8 @@
   "version": 2,
   "public": false,
   "builds": [
-    { "src": "package.json", "use": "@vercel/static-build" },
-    { "src": "server.js", "use": "@vercel/node-server" }
+    { "src": "package.json", "use": "@now/static-build" },
+    { "src": "server.js", "use": "@now/node-server" }
   ],
   "routes": [
     { "src": "/routes/.*", "dest": "/files/server.js" },
