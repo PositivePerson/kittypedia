@@ -3,7 +3,7 @@
   "public": false,
   "builds": [
     { "src": "package.json", "use": "@vercel/static-build" },
-    { "src": "/server.js", "use": "@vercel/node-server" }
+    { "src": "server.js", "use": "@vercel/node-server" }
   ],
   "routes": [
     { "src": "/routes/.*", "dest": "/files/server.js" },
