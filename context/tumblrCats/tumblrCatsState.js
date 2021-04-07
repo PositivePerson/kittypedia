@@ -26,12 +26,12 @@ const TumblrCatsState = (props) => {
             params: {
                 // mime_types: "gif",
                 mime_types: contentType === "photo" ? "jpg,png" : "gif",
-                limit: 12
+                limit: 25
             }
         }
         );
 
-        console.log("🚀 ~ file: tumblrCatsState.js ~ line 31 ~ searchCats ~ res", res)
+        // console.log("🚀 ~ file: tumblrCatsState.js ~ line 31 ~ searchCats ~ res", res)
 
         dispatch({
             type: SEARCH_CATS,

@@ -15,4 +15,5 @@
 
 .startBtnSize {
     width: 10em !important;
+    outline: none !important;
   }
