@@ -1,11 +1,45 @@
+import { useState, useContext, useEffect } from 'react'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
+import Cards from '../components/photos/Cards';
+import ChooseSectionButtons from '../components/layout/ChooseSectionButtons';
+
+import styled from 'styled-components';
+import Button from '@material-ui/core/Button';
+
 export default function Home() {
+
+  const [cardsDisplayFormat, setCardsDisplayFormat] = useState(true);
+  const [APIFetched, setAPIFetched] = useState(false);
+
+  const btnFloatBox = {
+    position: "absolute",
+    right: "1.5em",
+    top: "1.5em",
+  }
+
+  const btnFloat = {
+    position: "fixed",
+    display: "flex",
+    right: "1.5em",
+    top: "1.5em",
+    zIndex: "999",
+
+    width: "2em",
+    height: "2em",
+
+    fontSize: "1.9em"
+  }
+
+  const Emoji = styled.span`
+    font-size: .9em;
+  `;
+
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>Ps ps ps</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -13,6 +47,22 @@ export default function Home() {
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
+
+        {APIFetched &&
+          <>
+            <Button style={btnFloat} onClick={() => setCardsDisplayFormat(!cardsDisplayFormat)} color="secondary">{cardsDisplayFormat ? <i class="fas fa-th"></i> : <i class="fas fa-align-justify"></i>}</Button>
+            <h1>Caturday</h1>
+            <h4 className="desc">Provide kitty stuff for every occasion <Emoji>😸</Emoji></h4>
+            <a href="/api/getacat?filename=nt.jpg" alt="a cat" download>
+              {/* <img src="https://cdn2.thecatapi.com/images/54i.jpg" alt="" /> */}
+              download a file
+            </a>
+            {/* <Cards cardsDisplayFormat={cardsDisplayFormat} /> */}
+          </>
+        }
+        {!APIFetched &&
+          <ChooseSectionButtons setAPIFetched={setAPIFetched} APIFetched={APIFetched} />
+        }
 
         <p className={styles.description}>
           Get started by editing{' '}
