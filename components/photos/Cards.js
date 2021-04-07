@@ -21,7 +21,7 @@ const Cards = ({ cardsDisplayFormat }) => {
             <Fragment>
                 <div className={`container-flex flex-column justify-content-center px-4 ${cardsDisplayFormat ? "" : "card-columns mt-5"} ${"width: 2em"}`}>
                     {cats.map(cat => (
-                        <div className={cardsDisplayFormat ? "w-50 mx-auto mt-5" : ""}>
+                        <div className={cardsDisplayFormat ? "w-25 mx-auto mt-5" : ""}>
                             <CardItem key={cat.id} cat={cat} cardsDisplayFormat={cardsDisplayFormat} />
                         </div>
                     ))}

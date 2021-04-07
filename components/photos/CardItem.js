@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 
+import Image from "next/image";
+
 import Button from '@material-ui/core/Button';
 import styles from '../../styles/CardsAndButtons.module.css';
 
@@ -38,7 +40,14 @@ const CardItem = ({ cat, cardsDisplayFormat }) => {
                     <i style={{ fontSize: "1.5em" }} className="fas fa-download" />
                 </button>
 
-                <img className={`${styles.cardImg} card-img`} src={cat.url} alt="" />
+                {/* <img className={`${styles.cardImg} card-img`} src={cat.url} alt="" /> */}
+                <Image
+                    src={cat.url}
+                    alt="A cat"
+                    width={cat.width}
+                    height={cat.height}
+                    quality={25}
+                />
             </div>
         </div >
     )

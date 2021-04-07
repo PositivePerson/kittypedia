@@ -26,7 +26,7 @@ const TumblrCatsState = (props) => {
             params: {
                 // mime_types: "gif",
                 mime_types: contentType === "photo" ? "jpg,png" : "gif",
-                limit: 5
+                limit: 12
             }
         }
         );
