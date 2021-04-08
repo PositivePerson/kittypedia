@@ -29,16 +29,18 @@ const CardItem = ({ cat, cardsDisplayFormat }) => {
                 <a href={`/api/getacat?filename=${cat.url.substr(34)}`} ref={inputRef} alt="a cat" download>
                 </a>
 
-                <img className={`card-img ${styles.cardImg}`} src={cat.url} alt="" />
-                {/* <Image
-                    className={`${styles.cardImg} card-img`}
-                    src={cat.url}
-                    alt="A cat"
-                    width={cat.width}
-                    height={cat.height}
-                    layout="intrinsic"
-                    quality={25}
-                /> */}
+                {/* <img className={`card-img ${styles.cardImg}`} src={cat.url} alt="" /> */}
+                <div className={styles.cardImg}>
+                    <Image
+                        className={` card-img`}
+                        src={cat.url}
+                        alt="A cat"
+                        width={cat.width}
+                        height={cat.height}
+                        layout="intrinsic"
+                        quality={25}
+                    />
+                </div>
 
                 <button variant="outlined"
                     type="button"

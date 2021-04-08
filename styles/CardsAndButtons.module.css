@@ -24,7 +24,7 @@
   flex-direction: column-reverse;
   /* flex-direction: column; */
 
-  /* position: relative; */
+  position: relative;
 }
 
 .btnFloating {
