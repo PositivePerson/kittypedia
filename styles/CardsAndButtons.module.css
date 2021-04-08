@@ -1,9 +1,4 @@
-.cardInnerContainer { 
-  display: flex;
-  flex-direction: column-reverse;
 
-  position: relative;
-}
 
 .card {
   background-color: unset !important;
@@ -17,11 +12,19 @@
 .cardImg:hover, .btnFloating:hover + .cardImg {
   -webkit-filter: grayscale(100%) blur(1.5px); 
   filter: grayscale(100%) blur(1.5px);
-  z-index: 100;
+  z-index: 95;
 }
 
-.cardImg:hover + .btnFloating {
-  visibility: hidden;
+.cardImg:hover + .btnFloating, .btnFloating:hover {
+  visibility: visible;
+}
+
+.cardInnerContainer { 
+  display: flex;
+  flex-direction: column-reverse;
+  /* flex-direction: column; */
+
+  /* position: relative; */
 }
 
 .btnFloating {
@@ -35,7 +38,7 @@
     border-radius: 50% !important;
   
     /* border: none !important; */
-    /* visibility: hidden; */
+    visibility: hidden;
   }
   
   .btnFloatingOnCards {

@@ -27,27 +27,28 @@ const CardItem = ({ cat, cardsDisplayFormat }) => {
                 </a> */}
 
                 <a href={`/api/getacat?filename=${cat.url.substr(34)}`} ref={inputRef} alt="a cat" download>
-                    {/* download a file */}
                 </a>
 
-                <button variant="outlined" color="secondary"
-                    type="button"
-                    className={`${styles.btnFloating} btn btn-outline-secondary ${cardsDisplayFormat ? styles.btnFloatingOnCards : styles.btnFloatingOnVertical}`}
-                    disabled={fetching}
-                    onClick={() => downloadFile(cat.url)}
-                    aria-label="download this">
-                    {/* <i class="fas fa-arrow-down"></i> */}
-                    <i style={{ fontSize: "1.5em" }} className="fas fa-download" />
-                </button>
-
-                {/* <img className={`${styles.cardImg} card-img`} src={cat.url} alt="" /> */}
-                <Image
+                <img className={`card-img ${styles.cardImg}`} src={cat.url} alt="" />
+                {/* <Image
+                    className={`${styles.cardImg} card-img`}
                     src={cat.url}
                     alt="A cat"
                     width={cat.width}
                     height={cat.height}
+                    layout="intrinsic"
                     quality={25}
-                />
+                /> */}
+
+                <button variant="outlined"
+                    type="button"
+                    className={` ${styles.btn} ${styles.btnFloating} btn btn-outline-secondary ${cardsDisplayFormat ? styles.btnFloatingOnCards : styles.btnFloatingOnVertical}`}
+                    disabled={fetching}
+                    onClick={() => downloadFile()}
+                    aria-label="download this"
+                >
+                    <i style={{ fontSize: "1.5em" }} className="fas fa-download" />
+                </button>
             </div>
         </div >
     )
