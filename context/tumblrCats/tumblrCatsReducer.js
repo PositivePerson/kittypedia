@@ -1,4 +1,4 @@
-import { SEARCH_CATS, SET_LOADING } from '../types';
+import { SEARCH_CATS, SET_LOADING, SET_TYPE } from '../types';
 
 export default (state, { type, payload }) => {
     switch (type) {
@@ -14,6 +14,12 @@ export default (state, { type, payload }) => {
             return {
                 ...state,
                 loading: true
+            }
+
+        case SET_TYPE:
+            return {
+                ...state,
+                contentType: payload
             }
 
         default:

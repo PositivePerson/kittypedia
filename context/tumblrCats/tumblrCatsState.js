@@ -2,19 +2,21 @@ import React, { useReducer } from 'react';
 import axios from 'axios';
 import TumblrCatsContext from './tumblrCatsContext';
 import TumblrCatsReducer from './tumblrCatsReducer';
-import { SEARCH_CATS, SET_LOADING } from '../types';
+import { SEARCH_CATS, SET_LOADING, SET_TYPE } from '../types';
 
 const TumblrCatsState = (props) => {
 
     const initialState = {
         cats: [],
-        loading: false
+        loading: false,
+        contentType: null
     };
 
     const [state, dispatch] = useReducer(TumblrCatsReducer, initialState);
 
-    const searchCats = async (contentType, text) => {
+    const searchCats = async (contentType) => {
         setLoading();
+        setCurrentContentType(contentType);
 
         const res = await axios.get(
             // 'https://api.thecatapi.com/v1/images/search'
@@ -26,7 +28,8 @@ const TumblrCatsState = (props) => {
             params: {
                 // mime_types: "gif",
                 mime_types: contentType === "photo" ? "jpg,png" : "gif",
-                limit: 25
+                // limit: 1
+                limit: 15
             }
         }
         );
@@ -39,6 +42,11 @@ const TumblrCatsState = (props) => {
         })
     }
 
+    const setCurrentContentType = (contentType) => dispatch({
+        type: SET_TYPE,
+        payload: contentType
+    });
+
     const setLoading = () => dispatch({ type: SET_LOADING });
 
     return (
@@ -46,6 +54,7 @@ const TumblrCatsState = (props) => {
             value={{
                 cats: state.cats,
                 loading: state.loading,
+                contentType: state.contentType,
                 searchCats,
                 setLoading
             }}

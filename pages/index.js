@@ -1,71 +1,102 @@
-import { useState, useContext, useEffect } from 'react'
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useContext } from 'react';
+import Link from 'next/link';
 
-import Cards from '../components/photos/Cards';
-import ChooseSectionButtons from '../components/layout/ChooseSectionButtons';
+import TumblrCatsContext from '../context/tumblrCats/tumblrCatsContext';
 
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 
-export default function Home() {
+const Drawing = styled.object`
+    position: absolute;
+    left: 60%;
+    top: 50%;
+    // transform: translate(-50%, -50%);
+    width: 65%;
 
-  const [cardsDisplayFormat, setCardsDisplayFormat] = useState(true);
-  const [APIFetched, setAPIFetched] = useState(false);
+    // animation-iteration-count: 2;
+    animation: yourAnimation 3.8s ease-in-out 0s infinite normal none;
 
-  const btnFloatBox = {
-    position: "absolute",
-    right: "1.5em",
-    top: "1.5em",
-  }
+    @media (min-width: 912px) {
+      max-width: 23em; 
+      }
 
-  const btnFloat = {
-    position: "sticky",
-    display: "flex",
-    left: "calc(100% - 3.5em)",
-    top: "1.5em",
-    zIndex: "999",
+    @keyframes yourAnimation {
+      0%   {transform: translate(-50%,-50%);}
+      40%  {transform: translate(-50%, calc(-50% - 7px));}
+      100% {transform: translate(-50%, -50%);}
+    }
 
-    width: "2em",
-    height: "2em",
-
-    outline: "none",
-    fontSize: "1.9em"
-  }
-
-  const Emoji = styled.span`
-    font-size: .9em;
   `;
 
+const Btn = styled(Button)`
+  && {
+    color: white;
+    font-size: .65em;
+    background: #AF9C8F;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+
+    min-width: 9em;
+    height: 2.8em;
+  }
+`;
+
+const Logo = styled.h1`
+  font-size: 3em !important;
+`;
+
+const Description = styled.h4`
+  max-width: 15em;
+
+  fontSize: 1.5em !important;
+  margin-top: 1.3em;
+  margin-bottom: 2.5em;
+  margin-right: 2em;
+`;
+
+function Home() {
+
+  const tumblrCatsContext = useContext(TumblrCatsContext);
+
+  const { loading, searchCats } = tumblrCatsContext;
+
+  const firePhotoSection = () => {
+    searchCats("photo");
+  }
+
+  const fireGifSection = () => {
+    searchCats("gif");
+  }
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Kici kici kici</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <div className={styles.App}>
-        <div className={styles.AppContainer}>
-
-          {APIFetched &&
-            <>
-              <Button style={btnFloat} onClick={() => setCardsDisplayFormat(!cardsDisplayFormat)} color="secondary">{cardsDisplayFormat ? <i className="fas fa-th"></i> : <i className="fas fa-align-justify"></i>}</Button>
-              <h1>Caturday</h1>
-              <h4 className="desc">Provide kitty stuff for every occasion <Emoji>😸</Emoji></h4>
-              {/* <a href="/api/getacat?filename=nt.jpg" alt="a cat" download>
-              download a file
-            </a> */}
-              <Cards cardsDisplayFormat={cardsDisplayFormat} />
-            </>
-          }
-          {!APIFetched &&
-            <ChooseSectionButtons setAPIFetched={setAPIFetched} APIFetched={APIFetched} />
-          }
-
+    <div>
+      <div className="row align-items-center m-0" style={{ height: "100vh" }}>
+        <div className="col-7">
+          {/* <Drawing src="/friends_animated.svg" alt="" /> */}
+          <Drawing type="image/svg+xml" data="/friends_animated.svg">svg-animation</Drawing>
+          {/* <Image
+            src="/friends_animated.svg"
+            alt="Introduce Illustration"
+            width={786, 29}
+            height={749, 20}
+          /> */}
         </div>
-
+        <div className="col-5">
+          <Logo>Caturday</Logo>
+          <Description>Jump into ocean of fluffiness and access hundreds of gifs and photos to dowload by one click.</Description>
+          <div>
+            <Link href="/main_updated">
+              <Btn className="" variant="contained" size="small" onClick={firePhotoSection}>PHOTOS</Btn>
+            </Link>
+            <Link href="/main_updated">
+              <Btn className="ml-4 " variant="contained" size="small" onClick={fireGifSection}>GIFS</Btn>
+            </Link>
+          </div>
+        </div>
       </div>
-
     </div>
   )
 }
+
+export default Home
