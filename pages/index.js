@@ -3,6 +3,8 @@ import Link from 'next/link';
 
 import TumblrCatsContext from '../context/tumblrCats/tumblrCatsContext';
 
+import { motion } from 'framer-motion';
+
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 
@@ -70,32 +72,37 @@ function Home() {
   }
 
   return (
-    <div>
-      <div className="row align-items-center m-0" style={{ height: "100vh" }}>
-        <div className="col-7">
-          {/* <Drawing src="/friends_animated.svg" alt="" /> */}
-          <Drawing type="image/svg+xml" data="/friends_animated.svg">svg-animation</Drawing>
-          {/* <Image
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}>
+      <div>
+        <div className="row align-items-center m-0" style={{ height: "100vh" }}>
+          <div className="col-7">
+            {/* <Drawing src="/friends_animated.svg" alt="" /> */}
+            <Drawing type="image/svg+xml" data="/friends_animated.svg">svg-animation</Drawing>
+            {/* <Image
             src="/friends_animated.svg"
             alt="Introduce Illustration"
             width={786, 29}
             height={749, 20}
           /> */}
-        </div>
-        <div className="col-5">
-          <Logo>Caturday</Logo>
-          <Description>Jump into ocean of fluffiness and access hundreds of gifs and photos to dowload by one click.</Description>
-          <div>
-            <Link href="/main_updated">
-              <Btn className="" variant="contained" size="small" onClick={firePhotoSection}>PHOTOS</Btn>
-            </Link>
-            <Link href="/main_updated">
-              <Btn className="ml-4 " variant="contained" size="small" onClick={fireGifSection}>GIFS</Btn>
-            </Link>
+          </div>
+          <div className="col-5">
+            <Logo>Caturday</Logo>
+            <Description>Jump into ocean of fluffiness and access hundreds of gifs and photos to dowload by one click.</Description>
+            <div>
+              <Link href="/main_updated">
+                <Btn className="" variant="contained" size="small" onClick={firePhotoSection}>PHOTOS</Btn>
+              </Link>
+              <Link href="/main_updated">
+                <Btn className="ml-4 " variant="contained" size="small" onClick={fireGifSection}>GIFS</Btn>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

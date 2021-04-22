@@ -9,6 +9,8 @@ import ChooseSectionButtons from '../components/layout/ChooseSectionButtons';
 
 import TumblrCatsContext from '../context/tumblrCats/tumblrCatsContext';
 
+import { motion } from 'framer-motion';
+
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
@@ -150,8 +152,8 @@ export default function Main_updated() {
     const [menuOpen, setMenuOpen] = useState(false);
 
     useEffect(() => {
-        if (cats.length > 0) {
-            console.log(cats[0]);
+        if (cats.length === 0) {
+            ReloadResults(contentType);
         }
     }, [cats])
 
@@ -168,87 +170,93 @@ export default function Main_updated() {
     }
 
     return (
-        <div>
-            <Head>
-                <title>Kici kici kici</title>
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-            <div className="App">
 
-                <TitleRow className="row w-100 pt-5 mx-0">
-                    <Menu
-                        open={!menuOpen}
-                    >
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}>
+            <div>
+                <Head>
+                    <title>Kici kici kici</title>
+                    <link rel="icon" href="/favicon.ico" />
+                </Head>
+                <div className="App">
 
-                        <MenuIcon
-                            variant="contained"
-                            color="secondary"
-                            onClick={() => setMenuOpen(!menuOpen)}
+                    <TitleRow className="row w-100 pt-5 mx-0">
+                        <Menu
+                            open={menuOpen}
                         >
-                            {/* <Button
+
+                            <MenuIcon
+                                variant="contained"
+                                color="secondary"
+                                onClick={() => setMenuOpen(!menuOpen)}
+                            >
+                                {/* <Button
                             variant="contained"
                             color="secondary"
                             startIcon={svgIcon}
                             >
                             
                         </Button> */}
-                            {/* <Icon> */}
-                            <img alt="menu" src="/menu.svg" />
-                            {/* </Icon> */}
-                        </MenuIcon>
-                        <MenuButtons>
-                            <div
-                                className={menuOpen ? "closed" : "open"}
-                            >
-                                <Link href="/main_updated">
-                                    <span>
-                                        <Btn disabled={contentType === 'photo'} size="small" onClick={firePhotoSection}>PHOTOS</Btn>
-                                        {/* PHOTOS */}
-                                    </span>
-                                </Link>
-                                <Link href="/main_updated">
-                                    <span>
-                                        <Btn disabled={contentType === 'gifs'} size="small" onClick={fireGifsSection}>GIFS</Btn>
-                                    </span>
-                                </Link>
-                                <Link href="/main_updated">
-                                    <span>
-                                        <Btn size="small" onClick={ReloadResults}>
-                                            <img alt="Refresh results" src="/refresh.svg" />
-                                        </Btn>
-                                    </span>
-                                </Link>
-                            </div>
-                        </MenuButtons>
-                    </Menu>
-                    {/* <Menu type="image/svg+xml" data="/menu.svg">svg-animation</Menu> */}
+                                {/* <Icon> */}
+                                <img alt="menu" src="/menu.svg" />
+                                {/* </Icon> */}
+                            </MenuIcon>
+                            <MenuButtons>
+                                <div
+                                    className={!menuOpen ? "closed" : "open"}
+                                >
+                                    <Link href="/main_updated">
+                                        <span>
+                                            <Btn disabled={contentType === 'photo'} size="small" onClick={firePhotoSection}>PHOTOS</Btn>
+                                            {/* PHOTOS */}
+                                        </span>
+                                    </Link>
+                                    <Link href="/main_updated">
+                                        <span>
+                                            <Btn disabled={contentType === 'gifs'} size="small" onClick={fireGifsSection}>GIFS</Btn>
+                                        </span>
+                                    </Link>
+                                    <Link href="/main_updated">
+                                        <span>
+                                            <Btn size="small" onClick={ReloadResults}>
+                                                <img alt="Refresh results" src="/refresh.svg" />
+                                            </Btn>
+                                        </span>
+                                    </Link>
+                                </div>
+                            </MenuButtons>
+                        </Menu>
+                        {/* <Menu type="image/svg+xml" data="/menu.svg">svg-animation</Menu> */}
 
-                    <Link href="/">
-                        <h1 className="mx-auto mt-4" style={{ cursor: "pointer" }}>
-                            Caturday
+                        <Link href="/">
+                            <h1 className="mx-auto mt-4" style={{ cursor: "pointer" }}>
+                                Caturday
                         </h1>
-                    </Link>
-                </TitleRow>
+                        </Link>
+                    </TitleRow>
 
-                <h4 className="mt-4">Provide kitty stuff for every occasion</h4>
-                {cats.length > 0 &&
-                    // <CardItem cat={cats[0]} />
-                    <Cards />
-                }
+                    <h4 className="mt-4">Provide kitty stuff for every occasion</h4>
+                    {cats.length > 0 &&
+                        // <CardItem cat={cats[0]} />
+                        <Cards />
+                    }
 
-                <Footer>
-                    <div style={{ position: "relative" }}>
-                        <Girl>
-                            <img alt="Chillin girl icon" src="/chilling_girl.svg" />
-                        </Girl>
-                    </div>
-                    <div>
-                        <h5>© 2020 Bartosz Gałaszewicz. All rights reserved.</h5>
-                    </div>
-                </Footer>
+                    <Footer>
+                        <div style={{ position: "relative" }}>
+                            <Girl>
+                                <img alt="Chillin girl icon" src="/chilling_girl.svg" />
+                            </Girl>
+                        </div>
+                        <div>
+                            <h5>© 2020 Bartosz Gałaszewicz. All rights reserved.</h5>
+                        </div>
+                    </Footer>
+
+                </div>
 
             </div>
-
-        </div>
+        </motion.div>
     )
 }
