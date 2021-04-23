@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from 'react'
+import { useState, useContext, useEffect, useRef } from 'react'
 import Head from 'next/head';
 import Link from 'next/link';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -149,13 +149,21 @@ export default function Main_updated() {
 
     const { cats, loading, searchCats, contentType } = tumblrCatsContext;
 
-    const [menuOpen, setMenuOpen] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(true);
+
+    const menuRef = useRef(null);
 
     useEffect(() => {
         if (cats.length === 0) {
             ReloadResults(contentType);
         }
     }, [cats])
+
+    useEffect(() => {
+        setTimeout(() => {
+            menuRef.current.click();
+        }, 500);
+    }, [])
 
     const firePhotoSection = () => {
         searchCats("photo");
@@ -191,6 +199,7 @@ export default function Main_updated() {
                                 variant="contained"
                                 color="secondary"
                                 onClick={() => setMenuOpen(!menuOpen)}
+                                ref={menuRef}
                             >
                                 {/* <Button
                             variant="contained"
@@ -250,7 +259,8 @@ export default function Main_updated() {
                             </Girl>
                         </div>
                         <div>
-                            <h5>© 2020 Bartosz Gałaszewicz. All rights reserved.</h5>
+                            {/* <h5>© 2020 Bartosz Gałaszewicz. All rights reserved.</h5> */}
+                            <h5>© 2020 Caturday. All rights reserved.</h5>
                         </div>
                     </Footer>
 
