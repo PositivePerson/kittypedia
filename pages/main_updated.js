@@ -9,9 +9,9 @@ import ChooseSectionButtons from '../components/layout/ChooseSectionButtons';
 
 import TumblrCatsContext from '../context/tumblrCats/tumblrCatsContext';
 
-import { motion } from 'framer-motion';
-
 import styled from 'styled-components';
+
+import { motion } from 'framer-motion';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Icon from "@material-ui/core/Icon";
@@ -162,7 +162,7 @@ export default function Main_updated() {
     useEffect(() => {
         setTimeout(() => {
             menuRef.current.click();
-        }, 500);
+        }, 600);
     }, [])
 
     const firePhotoSection = () => {

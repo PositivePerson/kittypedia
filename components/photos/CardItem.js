@@ -2,10 +2,10 @@ import React, { useState, useEffect, useRef } from 'react'
 
 import Image from "next/image";
 
-import Button from '@material-ui/core/Button';
 import styles from '../../styles/CardsAndButtons.module.css';
 
 import styled from 'styled-components';
+import Button from '@material-ui/core/Button';
 
 const Download = styled.button`
     position: absolute !important;
@@ -81,7 +81,7 @@ const CardItem = ({ cat, thumbnail }) => {
 
                 {/* <img className={`card-img ${styles.cardImg}`} src={cat.url} alt="" /> */}
                 {/* <div className={styles.cardImg}> */}
-                <div style={{ maxWidth: `${thumbnail ? "2rem" : "26rem"}`, maxHeight: `${thumbnail ? "2rem" : "26rem"}`, filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))", height: `${thumbnail ? "2rem" : "unset"}`, width: `${thumbnail ? "2rem" : "unset"}` }}>
+                <div style={{ maxWidth: `${thumbnail ? "2rem" : "26rem"}`, maxHeight: `${thumbnail ? "2rem" : "26rem"}`, filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))", height: `${thumbnail ? "2rem" : "unset"}`, width: `${thumbnail ? "2rem" : "unset"}`, cursor: `${thumbnail ? "unset" : "grab"}` }}>
                     {!thumbnail && (
                         <Img
                             className={`card-img thumbnailImgStyle`}
@@ -120,6 +120,7 @@ const CardItem = ({ cat, thumbnail }) => {
                         aria-label="download this"
                     >
                         <i style={{ fontSize: "1.5em" }} className="fas fa-download" />
+                        <img alt="download" src="/download_icon.svg" />
                     </Download>
                 )}
             </div>
