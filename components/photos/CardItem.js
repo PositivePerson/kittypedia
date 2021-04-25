@@ -85,8 +85,8 @@ const Btn = styled(Button)`
 `;
 
 const CardItem = ({ cat, thumbnail }) => {
-    const [fetching, setFetching] = useState(false);
     const [error, setError] = useState(false);
+    const [loaded, setLoaded] = useState(false);
 
     const inputRef = React.useRef(null)
 
@@ -126,6 +126,9 @@ const CardItem = ({ cat, thumbnail }) => {
                             height={cat.height}
                             layout="intrinsic"
                             quality={25}
+
+                            style={loaded ? {} : { display: 'none' }}
+                            onLoad={() => setLoaded(true)}
 
                             thumbnail={thumbnail}
                         />

@@ -74,8 +74,11 @@ const Menu = styled.div`
     
     transition: transform 0.3s ease-out;
 
+    z-index: 20;
+
     ${({ open }) => open && `
         transform: translate(-10px, 0);
+        z-index: 30;
     `}
 
 `;
@@ -240,9 +243,9 @@ export default function Main_updated() {
                         {/* <Menu type="image/svg+xml" data="/menu.svg">svg-animation</Menu> */}
 
                         <Link href="/">
-                            <h1 className="mx-auto mt-4" style={{ cursor: "pointer" }}>
+                            <h1 className="mx-auto mt-4" style={{ cursor: "pointer", zIndex: "25" }}>
                                 Caturday
-                        </h1>
+                            </h1>
                         </Link>
                     </TitleRow>
 
