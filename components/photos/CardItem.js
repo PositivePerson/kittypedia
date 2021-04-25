@@ -20,6 +20,32 @@ const Download = styled.button`
       }
 `;
 
+const DownloadLayer = styled.div`
+      position: absolute;
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      cursor: grab;
+
+      background: rgb(110, 110, 160, .4);
+      opacity: 0;
+
+      &:hover {
+          opacity: 1;
+      }
+
+      & img:hover {
+        cursor: pointer;
+      }
+
+      transition: opacity .3s ease-out;
+    //   transition: transform 0.3s ease-out;
+`;
+
 // const Img = styled(Image)`
 //             ${props.thumbnail && 'border: 1px solid red;'}        
 
@@ -48,6 +74,15 @@ const Img = styled(Image)(props => {
         maxHeight: "100%"
     })
 });
+
+const Btn = styled(Button)`
+    && {
+        min-width: unset;
+        border-radius: 50%;
+        width: 3.5rem;
+        height: 3.5rem;
+    }
+`;
 
 const CardItem = ({ cat, thumbnail }) => {
     const [fetching, setFetching] = useState(false);
@@ -81,7 +116,7 @@ const CardItem = ({ cat, thumbnail }) => {
 
                 {/* <img className={`card-img ${styles.cardImg}`} src={cat.url} alt="" /> */}
                 {/* <div className={styles.cardImg}> */}
-                <div style={{ maxWidth: `${thumbnail ? "2rem" : "26rem"}`, maxHeight: `${thumbnail ? "2rem" : "26rem"}`, filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))", height: `${thumbnail ? "2rem" : "unset"}`, width: `${thumbnail ? "2rem" : "unset"}`, cursor: `${thumbnail ? "unset" : "grab"}` }}>
+                <div style={{ maxWidth: `${thumbnail ? "2rem" : "26rem"}`, maxHeight: `${thumbnail ? "2rem" : "26rem"}`, filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))", height: `${thumbnail ? "2rem" : "unset"}`, width: `${thumbnail ? "2rem" : "unset"}` }}>
                     {!thumbnail && (
                         <Img
                             className={`card-img thumbnailImgStyle`}
@@ -112,16 +147,12 @@ const CardItem = ({ cat, thumbnail }) => {
                 </div>
 
                 {!thumbnail && (
-                    <Download variant="outlined"
-                        type="button"
-                        className={`btn btn-outline-secondary ${styles.btnFloatingOnCards}`}
-                        disabled={fetching}
-                        onClick={() => downloadFile()}
-                        aria-label="download this"
-                    >
-                        <i style={{ fontSize: "1.5em" }} className="fas fa-download" />
-                        <img alt="download" src="/download_icon.svg" />
-                    </Download>
+                    <DownloadLayer>
+                        {/* <Btn size="small" onClick={downloadFile}> */}
+                        <Btn size="small" >
+                            <img alt="download" src="/download_icon.svg" />
+                        </Btn>
+                    </DownloadLayer>
                 )}
             </div>
         </div >
