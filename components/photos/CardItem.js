@@ -151,8 +151,7 @@ const CardItem = ({ cat, thumbnail }) => {
 
                 {!thumbnail && (
                     <DownloadLayer>
-                        {/* <Btn size="small" onClick={downloadFile}> */}
-                        <Btn size="small" >
+                        <Btn size="small" onClick={downloadFile}>
                             <img alt="download" src="/download_icon.svg" />
                         </Btn>
                     </DownloadLayer>

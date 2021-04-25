@@ -11,7 +11,7 @@ import TumblrCatsContext from '../context/tumblrCats/tumblrCatsContext';
 
 import styled from 'styled-components';
 
-import { motion } from 'framer-motion';
+import { animate, motion } from 'framer-motion';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Icon from "@material-ui/core/Icon";
@@ -147,6 +147,21 @@ const Girl = styled.span`
     }
 `;
 
+const leftFadeIn = {
+    initial: {
+        x: 120,
+        opacity: 0
+    },
+    animate: {
+        x: 0,
+        opacity: 1,
+        transition: {
+            delay: 2,
+            ease: "easeOut"
+        }
+    }
+}
+
 export default function Main_updated() {
     const tumblrCatsContext = useContext(TumblrCatsContext);
 
@@ -261,10 +276,12 @@ export default function Main_updated() {
                                 <img alt="Chillin girl icon" src="/chilling_girl.svg" />
                             </Girl>
                         </div>
-                        <div>
-                            {/* <h5>© 2020 Bartosz Gałaszewicz. All rights reserved.</h5> */}
-                            <h5>© 2020 Caturday. All rights reserved.</h5>
-                        </div>
+                        <motion.div initial="initial" animate="animate" transition="transition">
+                            <motion.div variants={leftFadeIn}>
+                                {/* <h5>© 2020 Bartosz Gałaszewicz. All rights reserved.</h5> */}
+                                <h5>© 2020 Caturday. All rights reserved.</h5>
+                            </motion.div>
+                        </motion.div>
                     </Footer>
 
                 </div>
