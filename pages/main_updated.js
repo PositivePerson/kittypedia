@@ -25,15 +25,28 @@ position: relative;
     width: 17em;
     line-height: 3em;
 
+    ${({ deviceWidth }) => (deviceWidth < 576) && `
+        width: 100vw;
+        height: 3rem;
+    `}
+
     & > div {
         display: inline-block;
         position: absolute;
 
         transition: transform 0.3s ease-out;
+
+        ${({ deviceWidth }) => (deviceWidth < 576) && `
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        `}
     }
 
     & .closed {
-        transform: translate(-100%, 0);
+        ${({ deviceWidth }) => (deviceWidth > 576) && `
+            transform: translate(-100%, 0);
+        `}
     }
 
     & .open {
@@ -41,7 +54,9 @@ position: relative;
     }
 
     & div > span {
-        ${({ deviceWidth }) => (deviceWidth < 768) ? `
+        ${({ deviceWidth }) => (deviceWidth < 576) ? `
+            padding-right: 1.5rem;
+        ` : (deviceWidth < 768) ? `
             padding-left: 1.5rem;
         ` : `
             padding-left: 1.8rem;
@@ -67,8 +82,10 @@ const Btn = styled(Button)`
 
 const Menu = styled.div`
     display: flex;
-    position: absolute !important;
-    left: 10%;
+    ${({ deviceWidth }) => (deviceWidth > 576) && `
+        position: absolute !important;
+        left: 10%;
+        `}
     bottom: 1em;
     
     // width: 15em;
@@ -89,6 +106,10 @@ const Menu = styled.div`
 `;
 
 const MenuIcon = styled(Button)`
+
+    ${({ deviceWidth }) => (deviceWidth < 576) && `
+        display: none !important;
+    `}
 
     z-index: 99;
 
@@ -119,6 +140,11 @@ const MenuIcon = styled(Button)`
 
 const TitleRow = styled.div`
     position: relative;
+
+    ${({ deviceWidth }) => (deviceWidth < 576) && `
+        display: flex;
+        flex-direction: column-reverse;
+    `}
 `;
 
 const Title = styled.h1.attrs({
@@ -206,9 +232,13 @@ export default function Main_updated() {
     }, [cats])
 
     useEffect(() => {
-        setTimeout(() => {
-            menuRef.current.click();
-        }, 600);
+        if (size.width < 576) {
+            setTimeout(() => {
+                menuRef.current.click();
+            }, 600);
+        } else {
+            setMenuOpen(false);
+        }
         console.log(size);
     }, [])
 
@@ -237,9 +267,10 @@ export default function Main_updated() {
                 </Head>
                 <div className="App">
 
-                    <TitleRow className="row w-100 pt-5 mx-0">
+                    <TitleRow className="row w-100 pt-5 mx-0" deviceWidth={size.width}>
                         <Menu
                             open={menuOpen}
+                            deviceWidth={size.width}
                         >
 
                             <MenuIcon
@@ -247,6 +278,7 @@ export default function Main_updated() {
                                 color="secondary"
                                 onClick={() => setMenuOpen(!menuOpen)}
                                 ref={menuRef}
+                                deviceWidth={size.width}
                             >
                                 {/* <Button
                             variant="contained"
@@ -306,7 +338,7 @@ export default function Main_updated() {
                             duration: 0.3
                         }}
                     >
-                        <h4 className="mt-4">Provide kitty stuff for every occasion</h4>
+                        <h4 className="mt-4" style={{ display: `${size.width < 576 ? 'none' : 'block'}` }}>Provide kitty stuff for every occasion</h4>
                     </motion.div>
                     {cats.length > 0 &&
                         // <CardItem cat={cats[0]} />
