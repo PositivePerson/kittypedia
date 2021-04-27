@@ -7,6 +7,8 @@ import styles from '../../styles/CardsAndButtons.module.css';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 
+import { motion } from 'framer-motion';
+
 const Download = styled.button`
     position: absolute !important;
     top: 50%;
@@ -106,57 +108,65 @@ const CardItem = ({ cat, thumbnail }) => {
 
     return (
         <div className={`${styles.card} card`} key={cat.id}>
-            <div className={styles.cardInnerContainer}>
 
-                {/* <a href={`/${cat.url.substr(34)}`} ref={inputRef} target="_blank" download>
+            <motion.div
+                whileTap={{
+                    scale: 0.8,
+                    borderRadius: "100%"
+                }}
+            >
+                <div className={styles.cardInnerContainer}>
+
+                    {/* <a href={`/${cat.url.substr(34)}`} ref={inputRef} target="_blank" download>
                 </a> */}
 
-                <a href={`/api/getacat?filename=${cat.url.substr(34)}`} ref={inputRef} alt="a cat" download>
-                </a>
+                    <a href={`/api/getacat?filename=${cat.url.substr(34)}`} ref={inputRef} alt="a cat" download>
+                    </a>
 
-                {/* <img className={`card-img ${styles.cardImg}`} src={cat.url} alt="" /> */}
-                {/* <div className={styles.cardImg}> */}
-                <div style={{ maxWidth: `${thumbnail ? "2rem" : "26rem"}`, maxHeight: `${thumbnail ? "2rem" : "26rem"}`, filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))", height: `${thumbnail ? "2rem" : "unset"}`, width: `${thumbnail ? "2rem" : "unset"}` }}>
+                    {/* <img className={`card-img ${styles.cardImg}`} src={cat.url} alt="" /> */}
+                    {/* <div className={styles.cardImg}> */}
+                    <div style={{ maxWidth: `${thumbnail ? "2rem" : "26rem"}`, maxHeight: `${thumbnail ? "2rem" : "26rem"}`, filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))", height: `${thumbnail ? "2rem" : "unset"}`, width: `${thumbnail ? "2rem" : "unset"}` }}>
+                        {!thumbnail && (
+                            <Img
+                                className={`card-img thumbnailImgStyle`}
+                                src={cat.url}
+                                alt="A cat"
+                                width={cat.width}
+                                height={cat.height}
+                                layout="intrinsic"
+                                quality={25}
+
+                                style={loaded ? {} : { display: 'none' }}
+                                onLoad={() => setLoaded(true)}
+
+                                thumbnail={thumbnail}
+                            />
+                        )}
+                        {thumbnail && (
+                            <img src={cat.url} alt="" style={{ maxHeight: "100%" }} />
+                            // <Img
+                            //     className={`card-img thumbnailImgStyle`}
+                            //     src={cat.url}
+                            //     alt="A cat"
+                            //     width={cat.width}
+                            //     height={cat.height}
+                            //     layout="intrinsic"
+                            //     quality={25}
+
+                            //     thumbnail={thumbnail}
+                            // />
+                        )}
+                    </div>
+
                     {!thumbnail && (
-                        <Img
-                            className={`card-img thumbnailImgStyle`}
-                            src={cat.url}
-                            alt="A cat"
-                            width={cat.width}
-                            height={cat.height}
-                            layout="intrinsic"
-                            quality={25}
-
-                            style={loaded ? {} : { display: 'none' }}
-                            onLoad={() => setLoaded(true)}
-
-                            thumbnail={thumbnail}
-                        />
-                    )}
-                    {thumbnail && (
-                        <img src={cat.url} alt="" style={{ maxHeight: "100%" }} />
-                        // <Img
-                        //     className={`card-img thumbnailImgStyle`}
-                        //     src={cat.url}
-                        //     alt="A cat"
-                        //     width={cat.width}
-                        //     height={cat.height}
-                        //     layout="intrinsic"
-                        //     quality={25}
-
-                        //     thumbnail={thumbnail}
-                        // />
+                        <DownloadLayer>
+                            <Btn size="small" onClick={downloadFile}>
+                                <img alt="download" src="/download_icon.svg" />
+                            </Btn>
+                        </DownloadLayer>
                     )}
                 </div>
-
-                {!thumbnail && (
-                    <DownloadLayer>
-                        <Btn size="small" onClick={downloadFile}>
-                            <img alt="download" src="/download_icon.svg" />
-                        </Btn>
-                    </DownloadLayer>
-                )}
-            </div>
+            </motion.div>
         </div >
     )
 

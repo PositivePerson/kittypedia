@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import CardItem from '../components/photos/CardItem';
 import Cards from '../components/photos/Cards';
 import ChooseSectionButtons from '../components/layout/ChooseSectionButtons';
+import useWindowSize from '../components/layout/getDevicesSize';
 
 import TumblrCatsContext from '../context/tumblrCats/tumblrCatsContext';
 
@@ -40,7 +41,11 @@ position: relative;
     }
 
     & div > span {
-        padding-left: 1.8rem;
+        ${({ deviceWidth }) => (deviceWidth < 768) ? `
+            padding-left: 1.5rem;
+        ` : `
+            padding-left: 1.8rem;
+        `}
         // font-size: .85em;
 
         cursor: pointer;
@@ -116,6 +121,28 @@ const TitleRow = styled.div`
     position: relative;
 `;
 
+const Title = styled.h1.attrs({
+    className: 'mt-4'
+})`
+    cursor: pointer;
+    z-index: 25;
+
+    margin-left: 50%;
+    transform: translate(-50%, 0);
+
+    transition: margin-left .3s ease-out;
+
+     ${({ open, deviceWidth }) => open && (deviceWidth < 768) && `
+         margin-left: 77% ;
+     ` ||
+        open && (deviceWidth < 992) && `
+         margin-left: 70% ;
+     `
+    }
+
+
+`;
+
 const Footer = styled.div`
     position: absolute;
     bottom: 2rem;
@@ -164,12 +191,13 @@ const leftFadeIn = {
 
 export default function Main_updated() {
     const tumblrCatsContext = useContext(TumblrCatsContext);
-
     const { cats, loading, searchCats, contentType } = tumblrCatsContext;
 
     const [menuOpen, setMenuOpen] = useState(true);
 
     const menuRef = useRef(null);
+
+    const size = useWindowSize();
 
     useEffect(() => {
         if (cats.length === 0) {
@@ -181,6 +209,7 @@ export default function Main_updated() {
         setTimeout(() => {
             menuRef.current.click();
         }, 600);
+        console.log(size);
     }, [])
 
     const firePhotoSection = () => {
@@ -230,7 +259,7 @@ export default function Main_updated() {
                                 <img alt="menu" src="/menu.svg" />
                                 {/* </Icon> */}
                             </MenuIcon>
-                            <MenuButtons>
+                            <MenuButtons deviceWidth={size.width}>
                                 <div
                                     className={!menuOpen ? "closed" : "open"}
                                 >
@@ -258,13 +287,27 @@ export default function Main_updated() {
                         {/* <Menu type="image/svg+xml" data="/menu.svg">svg-animation</Menu> */}
 
                         <Link href="/">
-                            <h1 className="mx-auto mt-4" style={{ cursor: "pointer", zIndex: "25" }}>
+                            <Title open={menuOpen} deviceWidth={size.width}>
                                 Caturday
-                            </h1>
+                            </Title>
                         </Link>
                     </TitleRow>
 
-                    <h4 className="mt-4">Provide kitty stuff for every occasion</h4>
+                    <motion.div
+                        animate={(menuOpen && size.width < 992) ? {
+                            x: 50,
+                            opacity: 0
+                        } : {
+                            x: 0,
+                            opacity: 1
+                        }}
+                        transition={{
+                            ease: "easeOut",
+                            duration: 0.3
+                        }}
+                    >
+                        <h4 className="mt-4">Provide kitty stuff for every occasion</h4>
+                    </motion.div>
                     {cats.length > 0 &&
                         // <CardItem cat={cats[0]} />
                         <Cards />
