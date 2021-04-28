@@ -150,6 +150,10 @@ const TitleRow = styled.div`
 const Title = styled.h1.attrs({
     className: 'mt-4'
 })`
+    ${({ deviceWidth }) => (deviceWidth < 768) && `
+        font-size: 3.6rem !important;
+    `}
+
     cursor: pointer;
     z-index: 25;
 
@@ -177,21 +181,21 @@ const Footer = styled.div`
     padding: 0 5em;
 
     display: flex;
-    // -webkit-flex-direction: row-reverse; 
-    display: flex;
     align-items: center;
     justify-content: space-between;
 
-    // & div .muiIcon-root {
-    //     width: unset;
-    //     height: unset;
-    // }
+    ${({ deviceWidth }) => (deviceWidth < 756) && `
+        flex-direction: column;
+    `}
 `;
 
 const Girl = styled.span`
-    position: absolute;
-    bottom: -2.5rem;
-    left: 0;
+
+    ${({ deviceWidth }) => (deviceWidth > 756) && `
+        position: absolute;
+        bottom: -2.5rem;
+        left: 0;
+    `}
 
     z-index: 1;
 
@@ -267,7 +271,7 @@ export default function Main_updated() {
                 </Head>
                 <div className="App">
 
-                    <TitleRow className="row w-100 pt-5 mx-0" deviceWidth={size.width}>
+                    <TitleRow className={`row w-100 mx-0 ${size.width < 576 ? 'pt-3' : ' pt-5'}`} deviceWidth={size.width}>
                         <Menu
                             open={menuOpen}
                             deviceWidth={size.width}
@@ -345,9 +349,9 @@ export default function Main_updated() {
                         <Cards />
                     }
 
-                    <Footer>
+                    <Footer deviceWidth={size.width}>
                         <div style={{ position: "relative" }}>
-                            <Girl>
+                            <Girl deviceWidth={size.width}>
                                 <img alt="Chillin girl icon" src="/chilling_girl.svg" />
                             </Girl>
                         </div>

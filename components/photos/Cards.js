@@ -30,7 +30,7 @@ const Cards = () => {
     } else {
         return (
             <Fragment>
-                <div className={`container-flex flex-column justify-content-center px-4 `} style={{ position: "relative", zIndex: "50" }}>
+                <div className={`container-flex flex-column justify-content-center`} style={{ position: "relative", zIndex: "50" }}>
                     <Carousel
                         value={value}
                         onChange={onChange}
@@ -81,6 +81,7 @@ const Cards = () => {
 
                     </Carousel>
                     <Dots
+                        className="d-none d-sm-flex"
                         value={value}
                         onChange={onChange}
                         thumbnails={
