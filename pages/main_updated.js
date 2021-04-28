@@ -55,7 +55,8 @@ position: relative;
 
     & div > span {
         ${({ deviceWidth }) => (deviceWidth < 576) ? `
-            padding-right: 1.5rem;
+            padding-right: 1rem;
+            padding-left: 1rem;
         ` : (deviceWidth < 768) ? `
             padding-left: 1.5rem;
         ` : `
