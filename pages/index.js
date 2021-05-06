@@ -52,6 +52,11 @@ const Btn = styled(Button)`
 
     min-width: 9em;
     height: 2.8em;
+
+    ${({ deviceWidth }) => (deviceWidth < 576) && `
+      padding: 2em 3rem;
+      width: 12em;
+    `}
   }
 `;
 
@@ -151,10 +156,10 @@ function Home() {
             <Description deviceWidth={size.width}>Jump into ocean of fluffiness and access hundreds of gifs and photos to dowload by one click.</Description>
             <div style={{ marginTop: `${size.width < 576 ? "3rem" : 0}` }}>
               <Link href="/main_updated">
-                <Btn className="" variant="contained" size="small" onClick={firePhotoSection}>PHOTOS</Btn>
+                <Btn className={`${size.width < 576 ? "mr-3" : ""}`} variant="contained" size="small" onClick={firePhotoSection} deviceWidth={size.width}>PHOTOS</Btn>
               </Link>
               <Link href="/main_updated">
-                <Btn className="ml-4 " variant="contained" size="small" onClick={fireGifSection}>GIFS</Btn>
+                <Btn className={`${size.width < 576 ? "ml-3" : "ml-4"}`} variant="contained" size="small" onClick={fireGifSection} deviceWidth={size.width}>GIFS</Btn>
               </Link>
             </div>
             {/* </div> */}

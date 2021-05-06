@@ -244,7 +244,6 @@ export default function Main_updated() {
         } else {
             setMenuOpen(false);
         }
-        console.log(size);
     }, [])
 
     const firePhotoSection = () => {
@@ -267,7 +266,7 @@ export default function Main_updated() {
             exit={{ opacity: 0 }}>
             <div>
                 <Head>
-                    <title>Kici kici kici</title>
+                    <title>XD</title>
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
                 <div className="App">
@@ -346,7 +345,6 @@ export default function Main_updated() {
                         <h4 className="mt-4" style={{ display: `${size.width < 576 ? 'none' : 'block'}` }}>Provide kitty stuff for every occasion</h4>
                     </motion.div>
                     {cats.length > 0 &&
-                        // <CardItem cat={cats[0]} />
                         <Cards />
                     }
 
