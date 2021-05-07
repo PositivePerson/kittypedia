@@ -17,7 +17,20 @@ import Carousel, { Dots, slidesToShowPlugin, arrowsPlugin, autoplayPlugin } from
 import '@brainhubeu/react-carousel/lib/style.css';
 
 const StyledToastContainer = styled(ToastContainer)`
-    // width: 15em;
+    & .Toastify__toast--warning {
+        // background: #7f62538c;
+
+        background: rgba( 255, 177, 150, 0.15 );
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+        backdrop-filter: blur( 4.0px );
+        -webkit-backdrop-filter: blur( 4.0px );
+        border-radius: 10px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+    }
+
+    @media (min-width: 576px) {
+        top: 4.3rem;
+        }
 `;
 
 const Cards = () => {
