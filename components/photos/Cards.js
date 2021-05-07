@@ -38,7 +38,7 @@ const Cards = () => {
 
     const [value, setValue] = useState(0);
     const [hint, setHint] = useState(
-        localStorage.getItem('hintsShown') || ''
+        window.localStorage.getItem('hintsShown') || ''
     );
     const leftArrow = useRef(null);
     const rightArrow = useRef(null);
@@ -96,7 +96,7 @@ const Cards = () => {
                 progress: undefined,
                 transition: Flip
             });
-            localStorage.setItem('hintsShown', true);
+            window.localStorage.setItem('hintsShown', true);
         }
     }, [])
 
