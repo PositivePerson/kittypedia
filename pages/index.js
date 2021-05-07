@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import Head from 'next/head';
 import Link from 'next/link';
 
 import TumblrCatsContext from '../context/tumblrCats/tumblrCatsContext';
@@ -138,6 +139,9 @@ function Home() {
       exit={{ opacity: 0 }}
       initial='initial'
       animate='animate'>
+      <Head>
+        <title>Welcome to Kittyland</title>
+      </Head>
       <div>
         <motion.div variants={stagger} className={`row align-items-center ${size.width < 576 && "align-content-center flex-wrap"} m-0 py-5 py-sm-0`} style={{ textAlign: `${size.width < 576 ? "center" : "inherit"}`, height: "100vh" }}>
           <motion.div variants={fadeInUpAndDownOut} className="col-12 col-sm-6 col-md-7">

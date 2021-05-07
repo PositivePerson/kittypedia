@@ -96,7 +96,9 @@ const Cards = () => {
                 progress: undefined,
                 transition: Flip
             });
-            window.localStorage.setItem('hintsShown', true);
+            if (!(typeof window === "undefined")) {
+                window.localStorage.setItem('hintsShown', true);
+            }
         }
     }, [])
 

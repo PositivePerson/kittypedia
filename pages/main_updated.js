@@ -303,7 +303,7 @@ export default function Main_updated() {
             exit={{ opacity: 0 }}>
             <div>
                 <Head>
-                    <title>XD</title>
+                    <title>Kitty Fabric</title>
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
                 <div className="App">
