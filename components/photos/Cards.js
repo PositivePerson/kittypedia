@@ -37,9 +37,6 @@ const Cards = () => {
     const { cats, loading } = tumblrCatsContext;
 
     const [value, setValue] = useState(0);
-    const [hint, setHint] = useState(
-        window.localStorage.getItem('hintsShown') || ''
-    );
     const leftArrow = useRef(null);
     const rightArrow = useRef(null);
 
@@ -63,7 +60,7 @@ const Cards = () => {
     }, []);
 
     useEffect(() => {
-        if (hint === '') {
+        if (!window.localStorage.getItem('hintsShown')) {
             toast.info(<div>Be quicker using keyboard!</div>, {
                 position: "top-right",
                 autoClose: false,
@@ -96,9 +93,7 @@ const Cards = () => {
                 progress: undefined,
                 transition: Flip
             });
-            if (!(typeof window === "undefined")) {
-                window.localStorage.setItem('hintsShown', true);
-            }
+            window.localStorage.setItem('hintsShown', true);
         }
     }, [])
 
