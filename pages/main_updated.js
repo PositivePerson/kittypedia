@@ -16,6 +16,7 @@ import { animate, motion } from 'framer-motion';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Icon from "@material-ui/core/Icon";
+import { ToastContainer, toast, Flip } from 'react-toastify';
 
 const MenuButtons = styled.div`
 position: relative;
@@ -227,6 +228,9 @@ export default function Main_updated() {
     const [menuOpen, setMenuOpen] = useState(true);
 
     const menuRef = useRef(null);
+    const photoBtn = useRef(null)
+    const gifBtn = useRef(null)
+    const refresh = useRef(null)
 
     const size = useWindowSize();
 
@@ -244,7 +248,39 @@ export default function Main_updated() {
         } else {
             setMenuOpen(false);
         }
+
+        const btnShortcutHandler = (event) => {
+            if (photoBtn.current && event.keyCode === 80) {
+                photoBtn.current.disabled ?
+                    notify(photoBtn) : photoBtn.current.click();
+            } else if (gifBtn.current && event.keyCode === 71) {
+                gifBtn.current.disabled ?
+                    notify(gifBtn) : gifBtn.current.click();
+            } else if (gifBtn.current && event.keyCode === 82) {
+                refresh.current.click();
+            }
+        };
+        window.addEventListener('keydown', btnShortcutHandler);
+        return () => {
+            window.removeEventListener('keydown', btnShortcutHandler);
+        };
     }, [])
+
+    const notify = (btnType) => {
+        if (!toast.isActive(btnType.toString())) {
+            toast.warning(<div>You are already there! To refresh use <strong>R</strong></div>, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                transition: Flip,
+                toastId: btnType.toString()
+            });
+        }
+    }
 
     const firePhotoSection = () => {
         searchCats("photo");
@@ -301,18 +337,18 @@ export default function Main_updated() {
                                 >
                                     <Link href="/main_updated">
                                         <span>
-                                            <Btn disabled={contentType === 'photo'} size="small" onClick={firePhotoSection}>PHOTOS</Btn>
+                                            <Btn disabled={contentType === 'photo'} size="small" onClick={firePhotoSection} ref={photoBtn}>PHOTOS</Btn>
                                             {/* PHOTOS */}
                                         </span>
                                     </Link>
                                     <Link href="/main_updated">
                                         <span>
-                                            <Btn disabled={contentType === 'gifs'} size="small" onClick={fireGifsSection}>GIFS</Btn>
+                                            <Btn disabled={contentType === 'gifs'} size="small" onClick={fireGifsSection} ref={gifBtn}>GIFS</Btn>
                                         </span>
                                     </Link>
                                     <Link href="/main_updated">
                                         <span>
-                                            <Btn size="small" onClick={ReloadResults}>
+                                            <Btn size="small" onClick={ReloadResults} ref={refresh}>
                                                 <img alt="Refresh results" src="/refresh.svg" />
                                             </Btn>
                                         </span>

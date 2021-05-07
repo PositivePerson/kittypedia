@@ -1,14 +1,24 @@
 import React, { useState, useEffect, useContext, useRef } from 'react'
 
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { ToastContainer, toast, Flip } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 import TumblrCatsContext from '../../context/tumblrCats/tumblrCatsContext';
 import CardItem from './CardItem';
 
+import styled from 'styled-components';
+
 import Icon from "@material-ui/core/Icon";
+import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 
 import Carousel, { Dots, slidesToShowPlugin, arrowsPlugin, autoplayPlugin } from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
+
+const StyledToastContainer = styled(ToastContainer)`
+    // width: 15em;
+`;
 
 const Cards = () => {
     const tumblrCatsContext = useContext(TumblrCatsContext);
@@ -16,8 +26,11 @@ const Cards = () => {
     const { cats, loading } = tumblrCatsContext;
 
     const [value, setValue] = useState(0);
-    const leftArrow = useRef(null)
-    const rightArrow = useRef(null)
+    const [hint, setHint] = useState(
+        localStorage.getItem('hintsShown') || ''
+    );
+    const leftArrow = useRef(null);
+    const rightArrow = useRef(null);
 
     const onChange = value => {
         setValue(value);
@@ -38,6 +51,24 @@ const Cards = () => {
         };
     }, []);
 
+    useEffect(() => {
+        console.log(localStorage.getItem('hintsShown') || '');
+
+        if (hint === '') {
+            toast.info(<div>Grab or use keyboard<KeyboardArrowLeftIcon /><KeyboardArrowRightIcon /></div>, {
+                position: "top-right",
+                autoClose: false,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                transition: Flip
+            });
+            localStorage.setItem('hintsShown', true);
+        }
+    }, [])
+
     if (cats.length === 0) {
         return (
             <div className="w-100">
@@ -47,6 +78,9 @@ const Cards = () => {
     } else {
         return (
             <div className={`container-flex flex-column justify-content-center`} style={{ position: "relative", zIndex: "50" }}>
+
+                <StyledToastContainer />
+
                 <Carousel
                     value={value}
                     onChange={onChange}
