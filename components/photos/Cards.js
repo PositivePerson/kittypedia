@@ -17,7 +17,8 @@ import Carousel, { Dots, slidesToShowPlugin, arrowsPlugin, autoplayPlugin } from
 import '@brainhubeu/react-carousel/lib/style.css';
 
 const StyledToastContainer = styled(ToastContainer)`
-    & .Toastify__toast--warning {
+    // & .Toastify__toast--warning {
+    & > div {
         // background: #7f62538c;
 
         background: rgba( 255, 177, 150, 0.15 );
@@ -67,19 +68,41 @@ const Cards = () => {
     useEffect(() => {
         console.log(localStorage.getItem('hintsShown') || '');
 
-        if (hint === '') {
-            toast.info(<div>Grab or use keyboard<KeyboardArrowLeftIcon /><KeyboardArrowRightIcon /></div>, {
-                position: "top-right",
-                autoClose: false,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                transition: Flip
-            });
-            localStorage.setItem('hintsShown', true);
-        }
+        // if (hint === '') {
+        toast.info(<div>Be quicker using keyboard!</div>, {
+            position: "top-right",
+            autoClose: false,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            transition: Flip
+        });
+
+        toast.info(<div><KeyboardArrowLeftIcon /><KeyboardArrowRightIcon /> for moving forward and backward</div>, {
+            position: "top-right",
+            autoClose: false,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            transition: Flip
+        });
+
+        toast.info(<div><strong>P</strong>, <strong>G</strong> and <strong>R</strong> for menu buttons</div>, {
+            position: "top-right",
+            autoClose: false,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            transition: Flip
+        });
+        localStorage.setItem('hintsShown', true);
+        // }
     }, [])
 
     if (cats.length === 0) {

@@ -268,10 +268,10 @@ export default function Main_updated() {
 
     const notify = (btnType) => {
         if (!toast.isActive(btnType.toString())) {
-            toast.warning(<div>You are already there! To refresh use <strong>R</strong></div>, {
+            toast.warning(<div>You're already there! To refresh use <strong>R</strong></div>, {
                 position: "top-right",
-                // autoClose: 2500,
-                autoClose: false,
+                autoClose: 2500,
+                // autoClose: false,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
