@@ -1,0 +1,25 @@
+.App {
+  text-align: center;
+
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://cdn2.thecatapi.com/images/a8o.jpg');
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* -webkit-backdrop-filter: blur(10px);
+    -moz-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px); */
+    
+}
+
+.AppContainer {
+  background: rgba(255, 255, 255, 0.35);
+  min-height: 100vh;
+  
+  -webkit-backdrop-filter: blur(7px);
+  -moz-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
+}
+
+.btn-outline-secondary {
+  /* border-color: transparent !important; */
+}

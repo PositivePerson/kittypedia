@@ -1,0 +1,56 @@
+
+
+.card {
+  background-color: unset !important;
+  border: none !important;
+}
+
+.cardImg {
+  z-index:90;
+}
+
+.cardImg:hover, .btnFloating:hover + .cardImg {
+  -webkit-filter: grayscale(100%) blur(1.5px); 
+  filter: grayscale(100%) blur(1.5px);
+  z-index: 95;
+}
+
+.cardImg:hover + .btnFloating, .btnFloating:hover {
+  visibility: visible;
+}
+
+.cardInnerContainer { 
+  display: flex;
+  flex-direction: column-reverse;
+  /* flex-direction: column; */
+
+  position: relative;
+}
+
+.btnFloating {
+    position: absolute !important;
+    top: 50%;
+    left: 50%;
+    transform: translate( -50%, -50%);
+  
+    z-index: 99;
+    
+    border-radius: 50% !important;
+  
+    /* border: none !important; */
+    visibility: hidden;
+  }
+  
+  .btnFloatingOnCards {
+    width: 5.5em;
+    height: 5.5em;
+  }
+  
+  .btnFloatingOnVertical {
+    width: 4em;
+    height: 4em;
+  }
+  
+  /* .btn:hover {
+    background: rgba(134, 134, 134, 0.5) !important;
+  } */
