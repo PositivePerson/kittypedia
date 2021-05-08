@@ -1,4 +1,4 @@
-This project is using Instagram API.
+This project is using thecatapi API.
 
 In the project directory, you can run:
 
